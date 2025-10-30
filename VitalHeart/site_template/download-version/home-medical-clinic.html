@@ -206,6 +206,33 @@
             color: white;
         }
         
+        /* Partners section */
+        .partner-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .partner-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+        }
+        .partner-logo {
+            max-height: 50px;
+            width: auto;
+            opacity: 0.9;
+            filter: grayscale(0);
+        }
+        .partner-card:hover .partner-logo {
+            opacity: 1;
+            filter: none;
+        }
+        
     </style>
 
 </head>
@@ -946,7 +973,6 @@ Faq Area
                 <div class="col-12">
                     <div class="title-area text-center space-top">
                         <span class="sub-title"><img src="assets/img/theme-img/title_icon_2.svg" alt="Icon">Често задавани въпроси</span>
-                        <h2 class="sec-title text-black">Имате ли въпроси? <br> Ето отговорите!</h2>
                     </div>
                 </div>
             </div>
@@ -1068,8 +1094,41 @@ Faq Area
     </div>
 
     <!--==============================
-	Footer Area
-==============================-->
+    Partners Area
+    ==============================-->
+    <section class="space bg-smoke" id="partners-sec">
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="Icon">Нашите партньори</span>
+            </div>
+            <div class="row g-3 g-md-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="partner-card">
+                        <img class="partner-logo" src="assets/img/partners/bulstrad.jpg" alt="Булстрад">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="partner-card">
+                        <img class="partner-logo" src="assets/img/partners/generali.png" alt="Дженерали" style="max-height: 65px;">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="partner-card">
+                        <img class="partner-logo" src="assets/img/partners/uniqa.png" alt="Уника">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="partner-card">
+                        <img class="partner-logo" src="assets/img/partners/allianz.png" alt="Алианц">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==============================
+    	Footer Area
+    ==============================-->
     <footer class="footer-wrapper footer-layout1" data-bg-src="assets/img/bg/footer_bg_1.jpg">
         <div class="widget-area">
             <div class="container">
