@@ -233,6 +233,75 @@
             filter: none;
         }
         
+        /* Equipment carousel */
+        .equipment-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .equipment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+        }
+        .equipment-img {
+            width: 100%;
+            height: 218px; /* enforce 330x218 ratio height */
+            aspect-ratio: 330 / 218;
+            object-fit: cover;
+            display: block;
+        }
+        .equipment-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .equipment-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0;
+            color: #1f2b6c;
+        }
+        .equipment-list {
+            margin: 0;
+            padding-left: 18px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .equipment-list li { margin-bottom: 6px; }
+        .equipment-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 28px;
+        }
+        .equipment-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+        }
+        .equipment-arrow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+        }
+        .equipment-arrow i { color: #1f2b6c; }
+        @media (min-width: 1200px) {
+            .equipment-img { height: 218px; }
+        }
+        
     </style>
 
 </head>
@@ -617,6 +686,46 @@ Service Area
         </div>
     </section>
 
+    <script>
+        (function() {
+            function equalizeEquipmentHeights() {
+                var cards = document.querySelectorAll('#equipmentSlider .equipment-card');
+                if (!cards.length) return;
+                // reset heights
+                cards.forEach(function(card){ card.style.height = ''; });
+                // compute max
+                var maxH = 0;
+                cards.forEach(function(card){
+                    var h = card.offsetHeight;
+                    if (h > maxH) maxH = h;
+                });
+                // apply max to all
+                cards.forEach(function(card){ card.style.height = maxH + 'px'; });
+            }
+
+            function onReady(fn){ if(document.readyState !== 'loading'){ fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
+
+            onReady(function(){
+                // Run after initial load
+                equalizeEquipmentHeights();
+                // Re-run after all images load
+                window.addEventListener('load', equalizeEquipmentHeights);
+                // Re-run on resize (debounced)
+                var resizeTimer;
+                window.addEventListener('resize', function(){
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(equalizeEquipmentHeights, 150);
+                });
+                // Mutation observer in case slides change
+                var slider = document.getElementById('equipmentSlider');
+                if (slider && 'MutationObserver' in window) {
+                    var mo = new MutationObserver(function(){ equalizeEquipmentHeights(); });
+                    mo.observe(slider, { childList: true, subtree: true });
+                }
+            });
+        })();
+    </script>
+
 
     <!--==============================
 Cta Area  
@@ -833,6 +942,116 @@ Appointment Area
             </div>
         </div>
     </div>
+
+    <!--==============================
+    Equipment Area
+    ==============================-->
+    <section class="space bg-smoke" id="equipment-sec">
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title"><img src="assets/img/theme-img/title_icon.svg" alt="Icon">Оборудване</span>
+                <h2 class="sec-title">Технологии, на които можете да се доверите</h2>
+            </div>
+
+            <div class="swiper th-slider" id="equipmentSlider" data-slider-options='{"spaceBetween":24,"loop":false,"navigation":{"nextEl":".eq-next","prevEl":".eq-prev"},"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2},"992":{"slidesPerView":3}}}'>
+                <div class="swiper-wrapper">
+                    <!-- BTL Flexi ECG -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/why_1.jpg" alt="BTL Flexi ECG">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">BTL Flexi ECG – Портативен ЕКГ апарат</h3>
+                                <ul class="equipment-list">
+                                    <li>12-канален ЕКГ, подходящ и за домашни посещения</li>
+                                    <li>Висока прецизност и бързи резултати</li>
+                                    <li>Цифрово свързване и лесен достъп до отчети</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BTL CPET -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/faq_2_2.jpg" alt="BTL CPET">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">BTL CPET – Кардио-пулмонален стрес тест</h3>
+                                <ul class="equipment-list">
+                                    <li>VO₂ max и физическа толерантност за спортисти и пациенти</li>
+                                    <li>Едновременен анализ на сърдечни и дихателни показатели</li>
+                                    <li>Подходящ за спортна медицина и предоперативна оценка</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BTL Holter ECG -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/why_2_2.jpg" alt="BTL Holter ECG">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">BTL Holter ECG – До 7 дни ЕКГ мониторинг</h3>
+                                <ul class="equipment-list">
+                                    <li>Засича скрити аритмии и сърдечни епизоди</li>
+                                    <li>Комфортен и подходящ за ежедневието</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BTL ABPM -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/form_1_1.jpg" alt="BTL ABPM">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">BTL ABPM – Амбулаторен мониторинг на кръвното налягане</h3>
+                                <ul class="equipment-list">
+                                    <li>Засича нощна хипертония и ефекта „бяла престилка“</li>
+                                    <li>Точен, дискретен и почти безшумен</li>
+                                    <li>До 51 часа непрекъснато измерване</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BTL CardioPoint -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/form_1_2.jpg" alt="BTL CardioPoint">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">BTL CardioPoint – Интегрирана софтуерна платформа</h3>
+                                <ul class="equipment-list">
+                                    <li>Централизирана диагностика: ЕКГ, холтер, ABPM, CPET</li>
+                                    <li>Бърз достъп до история и резултати</li>
+                                    <li>Подпомага по-добра координация между лекари</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mindray Consona N7 -->
+                    <div class="swiper-slide">
+                        <div class="equipment-card">
+                            <img class="equipment-img" src="assets/img/normal/cta_1.png" alt="Mindray Consona N7">
+                            <div class="equipment-body">
+                                <h3 class="equipment-title">Mindray Consona N7 – Ултразвук с висока резолюция</h3>
+                                <ul class="equipment-list">
+                                    <li>Подходящ за каротидни артерии, коремна аорта, сърце</li>
+                                    <li>Изключително качество на изображението</li>
+                                    <li>Ергономичен и удобен както за лекари, така и за пациенти</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equipment-nav text-center">
+                <button type="button" class="equipment-arrow eq-prev" aria-label="Назад"><i class="far fa-arrow-left"></i></button>
+                <button type="button" class="equipment-arrow eq-next" aria-label="Напред"><i class="far fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
 
     <!--==============================
 Packages Area
