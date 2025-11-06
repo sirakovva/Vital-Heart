@@ -106,8 +106,15 @@
             $(expandToggler).each(function () {
                 $(this).on("click", function (e) {
                     e.preventDefault();
+                    e.stopPropagation();
                     toggleDropDown($(this).parent());
                 });
+            });
+            
+            // Handle clicks on anchor tags inside menu items with children
+            menu.find("li." + opt.subMenuParent + " > a").on("click", function (e) {
+                e.preventDefault();
+                toggleDropDown($(this));
             });
     
             $(opt.menuToggleBtn).each(function () {
