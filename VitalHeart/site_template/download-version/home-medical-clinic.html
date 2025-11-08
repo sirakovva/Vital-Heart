@@ -301,6 +301,9 @@
         @media (min-width: 1200px) {
             .equipment-img { height: 218px; }
         }
+        #teamSlider1 .th-team.team-card .box-img {
+            cursor: pointer;
+        }
         
         /* Hero Diagonal Split Background */
         .view {
@@ -427,8 +430,12 @@
                             <li><a href="weight-management.html">Менажиране на теглото</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="contact.html">Контакти</a>
+                    <li class="menu-item-has-children">
+                        <a href="#">Екип</a>
+                        <ul class="sub-menu">
+                            <li><a href="radostin-vulchev.html">д-р Радостин Вълчев</a></li>
+                            <li><a href="ivan-manolov.html">д-р Иван Манолов</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -472,8 +479,12 @@
                                             <li><a href="weight-management.html">Менажиране на теглото</a></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="contact.html">Контакти</a>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Екип</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="radostin-vulchev.html">д-р Радостин Вълчев</a></li>
+                                            <li><a href="ivan-manolov.html">д-р Иван Манолов</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </nav>
@@ -892,7 +903,7 @@ Team Area
             <div class="swiper th-slider has-shadow" id="teamSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
                 <div class="swiper-wrapper">
                     <!-- Single Item -->
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" onclick="window.location.href='ivan-manolov.html'">
                         <div class="th-team team-card">
                             <div class="box-img">
                                 <img src="assets/img/team/Vital Heart Cabinet Heads - 11.jpg" alt="Team">
@@ -902,13 +913,13 @@ Team Area
                                     <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
                                 </div>
                             </div>
-                            <h3 class="box-title"><a href="team-details.html">Д-р Иван Манолов</a></h3>
+                            <h3 class="box-title">Д-р Иван Манолов</h3>
                             <span class="team-desig">Кардиолог</span>
                         </div>
                     </div>
 
                     <!-- Single Item -->
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" onclick="window.location.href='radostin-vulchev.html'">
                         <div class="th-team team-card">
                             <div class="box-img">
                                 <img src="assets/img/team/Vital Heart Cabinet Heads - 3.jpg" alt="Team">
@@ -918,8 +929,8 @@ Team Area
                                     <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
                                 </div>
                             </div>
-                            <h3 class="box-title"><a href="team-details.html">Д-р Радостин Вълчев</a></h3>
-                            <span class="team-desig">Спортна кардиология</span>
+                            <h3 class="box-title">Д-р Радостин Вълчев</h3>
+                            <span class="team-desig">Кардиолог</span>
                         </div>
                     </div>
 
