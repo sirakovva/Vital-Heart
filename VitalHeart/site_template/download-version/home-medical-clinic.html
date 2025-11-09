@@ -63,6 +63,11 @@
         #teamSlider1 .swiper-wrapper {
             justify-content: center;
         }
+        .split-hero-bg {
+            position: relative;
+            height: 60vh;
+            min-height: 420px;
+        }
         #teamSlider1 .swiper-slide {
             flex-shrink: 0;
         }
@@ -326,38 +331,117 @@
             left: -10%;  
             right: 50%;  
         }
-        .divider {
-            background-color: black;
-            border-left: solid 2px #000;
-            border-right: solid 2px #000;
-            bottom: -10%;
-            left: 50%;
-            position: absolute;
-            right: 50%;
-            top: -10%;
-            z-index: 1;
-        }
         .right {
             left: 50%;
             right: -10%;
         }
-        .sports-cardiology,
-        .preventive-cardiology {
+        .split-panel {
             bottom: -10%;
             left: -10%;
             position: absolute;
             right: -10%;
             top: -10%;
             transform: skew(10deg);
-            background-position: center center;
-            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
-        .sports-cardiology img,
-        .preventive-cardiology img {
+        .split-panel-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.6s ease, filter 0.6s ease;
+            position: relative;
+            z-index: 0;
+        }
+        .split-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        .split-panel-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            text-align: center;
+            color: #ffffff;
+            padding: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .split-panel-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+        .split-panel-overlay .th-btn {
+            pointer-events: auto;
+        }
+        .split-panel-btn {
+            min-width: 160px;
+        }
+        .split-panel:hover .split-panel-img,
+        .split-panel:focus-within .split-panel-img {
+            transform: scale(1.12);
+            filter: brightness(0.6);
+        }
+        .split-panel:hover::after,
+        .split-panel:focus-within::after {
+            opacity: 1;
+        }
+        .split-panel:hover .split-panel-overlay,
+        .split-panel:focus-within .split-panel-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .th-hero-wrapper.hero-2 {
+            margin-top: -80px;
+        }
+        @media (max-width: 991.98px) {
+            .th-hero-wrapper.hero-2 {
+                margin-top: -50px;
+            }
+        }
+        #about-sec {
+            margin-top: -80px;
+        }
+        @media (max-width: 991.98px) {
+            #about-sec {
+                margin-top: -40px;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .split-hero-bg {
+                height: 420px;
+            }
+            .split-panel::after {
+                opacity: 0.6;
+            }
+            .split-panel-overlay {
+                opacity: 1;
+                transform: none;
+            }
+            .th-hero-wrapper.hero-2 {
+                margin-top: -30px;
+            }
+            #about-sec {
+                margin-top: -10px;
+            }
         }
         .hero-inner {
             position: relative;
@@ -411,9 +495,7 @@
                 <ul>
                     <li>
                         <a href="home-medical-clinic.html">Начало</a>
-                    </li>
-                    <li><a href="about.html">За нас</a></li>
-                    <li class="menu-item-has-children">
+                    </li><li class="menu-item-has-children">
                         <a href="#">Услуги</a>
                         <ul class="sub-menu">     
                             <li><a href="sports-cardiology.html">Спортна Кардиология</a></li>
@@ -461,9 +543,7 @@
                                 <ul>
                                     <li>
                                         <a href="home-medical-clinic.html">Начало</a>
-                                    </li>
-                                    <li><a href="about.html">За нас</a></li>
-                                    <li class="menu-item-has-children">
+                                    </li><li class="menu-item-has-children">
                                         <a href="#">Услуги</a>
                                         <ul class="sub-menu">     
                                             <li><a href="sports-cardiology.html">Спортна Кардиология</a></li>
@@ -504,18 +584,34 @@
         </div>
     </header>
     <!--==============================
+Split Hero Background
+==============================-->
+    <section class="split-hero-bg">
+        <div class="view">
+            <div class="left">
+                <div class="split-panel split-panel-sports">
+                    <img class="split-panel-img" src="assets/img/hero/sports-cardiology-hero.jpg" alt="Спортна кардиология">
+                    <div class="split-panel-overlay">
+                        <h3 class="split-panel-title">Спортна кардиология</h3>
+                        <a href="sports-cardiology.html" class="th-btn split-panel-btn">Виж повече</a>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="split-panel split-panel-preventive">
+                    <img class="split-panel-img" src="assets/img/hero/preventive-cardiology-hero.jpg" alt="Превантивна кардиология">
+                    <div class="split-panel-overlay">
+                        <h3 class="split-panel-title">Превантивна кардиология</h3>
+                        <a href="preventive-cardiology.html" class="th-btn split-panel-btn">Виж повече</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--==============================
 Hero Area
 ==============================-->
     <div class="th-hero-wrapper hero-2" id="hero">
-        <div class="view">
-            <div class="left">
-                <div class="sports-cardiology"><img src="assets/img/hero/sports-cardiology-hero.jpg" alt="sports-cardiology"></div>
-            </div>
-            <div class="divider"></div>
-            <div class="right">
-                <div class="preventive-cardiology"><img src="assets/img/hero/preventive-cardiology-hero.jpg" alt="preventive-cardiology"></div>
-            </div>
-        </div>
         <div class="hero-inner">
             <div class="container">
                 <div class="hero-style2">
@@ -526,7 +622,7 @@ Hero Area
                     </h1>
                     <p class="hero-text">Във Vital Heart вярваме, че истинската медицина започва преди болестта, не след нея. Затова създадохме място, в което превенцията не е допълнение, а основа.</p>
                     <div class="btn-group justify-content-center">
-                        <a href="about.html" class="th-btn">За нас</a>
+                        <a href="#about-sec" class="th-btn">За нас</a>
                         <a href="service.html" class="th-btn style4">Нашите услуги</a>
                     </div>
                 </div>
@@ -578,7 +674,7 @@ About Area
                             </div>
                         </div>
                         <div>
-                            <a href="about.html" class="th-btn">Повече за нас</a>
+                            <a href="#about-sec" class="th-btn">Повече за нас</a>
                         </div>
                     </div>
                 </div>
@@ -1398,9 +1494,7 @@ Faq Area
                         <div class="widget widget_nav_menu footer-widget">
                             <h3 class="widget_title">Полезни връзки</h3>
                             <div class="menu-all-pages-container">
-                                <ul class="menu">
-                                    <li><a href="about.html">За нас</a></li>
-                                    <li><a href="assets/prices/pricelist.pdf" download>Цени</a></li>
+                                <ul class="menu"><li><a href="assets/prices/pricelist.pdf" download>Цени</a></li>
                                     <li><a href="terms.html">Общи условия</a></li>
                                     <li><a href="privacy-policy.html">Политика за поверителност</a></li>
                                     <li><a href="contact.html">Контакти</a></li>
