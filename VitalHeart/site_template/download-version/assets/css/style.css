@@ -1200,6 +1200,18 @@ textarea.is-invalid {
   background-color: var(--smoke-color2);
 }
 
+.th-menu-wrapper .mobile-logo a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.th-menu-wrapper .mobile-logo img {
+  display: block;
+  max-width: 185px;
+  height: auto;
+  width: auto;
+}
+
 .th-menu-wrapper .mobile-logo svg {
   max-width: 185px;
 }
@@ -5360,6 +5372,18 @@ ol.wp-block-rss {
   z-index: 2;
   height: 100px;
   padding: 20px 100px 20px 0;
+}
+
+.header-layout1 .header-logo a {
+  display: block;
+  line-height: 0;
+}
+
+.header-layout1 .header-logo img {
+  display: block;
+  max-width: 200px;
+  height: auto;
+  width: auto;
 }
 
 .header-layout1 .header-logo .logo-bg {
@@ -13870,7 +13894,7 @@ span.select2-selection.select2-selection--single:focus {
   transition: 0.4s ease-in-out;
   border-radius: 20px;
   overflow: hidden;
-  background-color: var(--smoke-color);
+  background-color: var(--white-color);
   text-align: left;
   position: relative;
   z-index: 3;

@@ -21,6 +21,18 @@
     text-align: center;
     background-color: $smoke-color2;
 
+    a {
+      display: inline-block;
+      line-height: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 185px;
+      height: auto;
+      width: auto;
+    }
+
     svg {
       max-width: 185px;
     }

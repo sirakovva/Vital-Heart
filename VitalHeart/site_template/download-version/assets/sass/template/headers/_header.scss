@@ -422,6 +422,16 @@
         z-index: 2;
         height: 100px;
         padding: 20px 100px 20px 0;
+        a {
+            display: block;
+            line-height: 0;
+        }
+        img {
+            display: block;
+            max-width: 200px;
+            height: auto;
+            width: auto;
+        }
         .logo-bg {
             position: absolute;
             top: 0;
